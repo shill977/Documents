@@ -1,0 +1,61 @@
+Excercise File Permission
+1.
+suzanne@suzanne-VirtualBox:~$ chmod o-r file_a
+suzanne@suzanne-VirtualBox:~$ cat file_a
+suzanne@suzanne-VirtualBox:~$ ls -l
+total 44
+drwxr-xr-x 2 suzanne suzanne 4096 Jan 23 18:16 Desktop
+drwxr-xr-x 2 suzanne suzanne 4096 Jan 23 18:16 Documents
+drwxr-xr-x 2 suzanne suzanne 4096 Jan 23 18:16 Downloads
+-rw-r--r-- 1 suzanne suzanne 8980 Jan 23 18:06 example.desktop
+-rw-rw---- 1 suzanne suzanne    0 Jan 28 18:51 file_a
+
+2.
+suzanne@suzanne-VirtualBox:~$ chmod g=r file_a
+suzanne@suzanne-VirtualBox:~$ cat file_a
+suzanne@suzanne-VirtualBox:~$ ls -l
+total 44
+drwxr-xr-x 2 suzanne suzanne 4096 Jan 23 18:16 Desktop
+drwxr-xr-x 2 suzanne suzanne 4096 Jan 23 18:16 Documents
+drwxr-xr-x 2 suzanne suzanne 4096 Jan 23 18:16 Downloads
+-rw-r--r-- 1 suzanne suzanne 8980 Jan 23 18:06 example.desktop
+-rw-r----- 1 suzanne suzanne    0 Jan 28 18:51 file_a
+
+3.
+suzanne@suzanne-VirtualBox:~$ chmod a=r file_a
+suzanne@suzanne-VirtualBox:~$ cat file_a
+suzanne@suzanne-VirtualBox:~$ ls -l
+total 44
+drwxr-xr-x 2 suzanne suzanne 4096 Jan 23 18:16 Desktop
+drwxr-xr-x 2 suzanne suzanne 4096 Jan 23 18:16 Documents
+drwxr-xr-x 2 suzanne suzanne 4096 Jan 23 18:16 Downloads
+-rw-r--r-- 1 suzanne suzanne 8980 Jan 23 18:06 example.desktop
+-r--r--r-- 1 suzanne suzanne    0 Jan 28 18:51 file_a
+
+4.
+Chmod a-rwx file_a ( in numeric mode)
+
+suzanne@suzanne-VirtualBox:~$ chmod 000 file_a
+suzanne@suzanne-VirtualBox:~$ cat file_a
+cat: file_a: Permission denied
+suzanne@suzanne-VirtualBox:~$ ls -l
+total 44
+drwxr-xr-x 2 suzanne suzanne 4096 Jan 23 18:16 Desktop
+drwxr-xr-x 2 suzanne suzanne 4096 Jan 23 18:16 Documents
+drwxr-xr-x 2 suzanne suzanne 4096 Jan 23 18:16 Downloads
+-rw-r--r-- 1 suzanne suzanne 8980 Jan 23 18:06 example.desktop
+---------- 1 suzanne suzanne    0 Jan 28 18:51 file_a
+
+chmod o+x file_a  ( in numeric mode)
+
+suzanne@suzanne-VirtualBox:~$ chmod 001 file_a
+suzanne@suzanne-VirtualBox:~$ cat file_a
+cat: file_a: Permission denied
+suzanne@suzanne-VirtualBox:~$ ls -l
+total 44
+drwxr-xr-x 2 suzanne suzanne 4096 Jan 23 18:16 Desktop
+drwxr-xr-x 2 suzanne suzanne 4096 Jan 23 18:16 Documents
+drwxr-xr-x 2 suzanne suzanne 4096 Jan 23 18:16 Downloads
+-rw-r--r-- 1 suzanne suzanne 8980 Jan 23 18:06 example.desktop
+---------x 1 suzanne suzanne    0 Jan 28 18:51 file_a
+ 

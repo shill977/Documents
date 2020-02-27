@@ -1,0 +1,57 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf610
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 HelveticaNeue;\f2\froman\fcharset0 Times-Roman;
+}
+{\colortbl;\red255\green255\blue255;\red14\green14\blue14;\red241\green241\blue241;\red255\green255\blue255;
+\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c6667\c6667\c6667;\cssrgb\c95686\c95686\c95686;\cssrgb\c100000\c100000\c100000;
+\cssrgb\c0\c0\c0;}
+\margl1440\margr1440\vieww12460\viewh13360\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Quiz 2\
+\
+\pard\pardeftab720\sl300\sa200\partightenfactor0
+
+\f1\fs26 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Please copy the following code snippets, which may be needed in some of your quiz questions, into your notepad before you start your quiz.
+\fs20 \
+\pard\pardeftab720\sl240\sa200\partightenfactor0
+\cf2 Code example 4-1\
+SELECT VendorName AS Vendor, InvoiceDate AS Date\cb1 \uc0\u8232 \cb3 FROM Vendors AS v JOIN Invoices AS i\cb1 \uc0\u8232 \cb3 \'a0\'a0\'a0 ON v.VendorID = i.VendorID;\
+\pard\pardeftab720\sl240\sa200\partightenfactor0
+\cf2 \cb1 \uc0\u8232 \cb3 Code example 4-2\
+SELECT VendorName, InvoiceNumber\cb1 \uc0\u8232 \cb3 FROM Invoices LEFT JOIN Vendors\cb1 \uc0\u8232 \cb3 \'a0 ON Invoices.VendorID = Vendors.VendorID;\
+\pard\pardeftab720\sl300\sa260\partightenfactor0
+
+\fs26 \cf2 \cb4 Quiz 3\
+\pard\pardeftab720\sl300\sa200\partightenfactor0
+\cf2 \cb3 Please copy the following code snippets, which may be needed in some of your quiz questions, into your notepad before you start your quiz.
+\fs20 \
+\pard\pardeftab720\sl240\sa200\partightenfactor0
+\cf2 \
+Code example 5.1\
+SELECT VendorState, VendorCity, VendorName, COUNT(*) AS InvoiceQty,\cb1 \uc0\u8232 \cb3 \'a0\'a0\'a0 SUM(InvoiceTotal) AS InvoiceAvg\cb1 \uc0\u8232 \cb3 FROM Invoices JOIN Vendors\cb1 \uc0\u8232 \cb3 \'a0\'a0\'a0 ON Invoices.VendorID = Vendors.VendorID\cb1 \uc0\u8232 \cb3 WHERE VendorState < 'e'\cb1 \uc0\u8232 \cb3 GROUP BY VendorState, VendorCity, VendorName\cb1 \uc0\u8232 \cb3 HAVING SUM(InvoiceTotal) > 500\cb1 \uc0\u8232 \cb3 ORDER BY VendorState, VendorCity, VendorName;\
+\pard\pardeftab720\sl300\sa260\partightenfactor0
+
+\f2\fs26 \cf5 \cb1 \strokec5 \uc0\u8232 \
+\pard\pardeftab720\sl240\sa200\partightenfactor0
+
+\f1\fs20 \cf2 \cb3 \strokec2 Code example 6.1\
+SELECT VendorName, COUNT(*) AS NumberOfInvoices,\cb1 \uc0\u8232 \cb3 \'a0\'a0\'a0\'a0\'a0\'a0 MAX(InvoiceTotal - PaymentTotal - CreditTotal) AS BalanceDue\cb1 \uc0\u8232 \cb3 FROM Vendors JOIN Invoices ON Vendors.VendorID = Invoices.VendorID\cb1 \uc0\u8232 \cb3 WHERE InvoiceTotal - PaymentTotal - CreditTotal >\cb1 \uc0\u8232 \cb3 \'a0\'a0\'a0 (SELECT AVG(InvoiceTotal - PaymentTotal - CreditTotal)\cb1 \uc0\u8232 \cb3 \'a0\'a0\'a0 FROM Invoices)\cb1 \uc0\u8232 \cb3 GROUP BY VendorName\cb1 \uc0\u8232 \cb3 ORDER BY BalanceDue DESC;\
+\pard\pardeftab720\sl300\sa260\partightenfactor0
+
+\f2\fs26 \cf5 \cb1 \strokec5 \uc0\u8232 \
+\pard\pardeftab720\sl240\sa200\partightenfactor0
+
+\f1\fs20 \cf2 \cb3 \strokec2 Code example 6.2\
+WITH Top5 AS\cb1 \uc0\u8232 \cb3 \'a0\'a0\'a0 (SELECT TOP 5 VendorID, AVG(InvoiceTotal) AS AvgInvoice\cb1 \uc0\u8232 \cb3 \'a0\'a0\'a0 FROM Invoices\cb1 \uc0\u8232 \cb3 \'a0\'a0\'a0 GROUP BY VendorID\cb1 \uc0\u8232 \cb3 \'a0\'a0\'a0 ORDER BY AvgInvoice DESC)\cb1 \uc0\u8232 \cb3 SELECT Invoices.VendorID, MAX(Invoices.InvoiceTotal) AS LargestInvoice\cb1 \uc0\u8232 \cb3 FROM Invoices JOIN Top5\cb1 \uc0\u8232 \cb3 \'a0\'a0\'a0 ON Invoices.VendorID = Top5.VendorID\cb1 \uc0\u8232 \cb3 GROUP BY Invoices.VendorID\cb1 \uc0\u8232 \cb3 ORDER BY LargestInvoice DESC;\
+\pard\pardeftab720\sl300\sa260\partightenfactor0
+
+\fs26 \cf2 \uc0\u8232 
+\f2 \cf5 \cb1 \strokec5 \
+\pard\pardeftab720\sl300\sa260\partightenfactor0
+
+\f1 \cf2 \cb4 \strokec2 \
+\uc0\u8232 
+\f2 \cf5 \cb1 \strokec5 \
+}
